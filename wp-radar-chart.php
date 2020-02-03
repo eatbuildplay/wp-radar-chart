@@ -19,11 +19,24 @@ class WP_RadarChartPlugin {
 
 	public function __construct() {
 
+		//add_action('admin_init', array('WP_RadarChartPlugin', 'initAdminFields'));
+
+		// include fields framework
+		include( WP_RADAR_CHART_PATH . 'vendor/apf/admin-page-framework.php' );
+		include( WP_RADAR_CHART_PATH . 'src/AdminFields.php' );
+		new WP_RadarChartAdminFields;
+
 		// include chart.js via enqueue
 		add_action( 'wp_enqueue_scripts', array('WP_RadarChartPlugin', 'scripts'));
 
 		// register shortcode
 		add_action( 'init', array('WP_RadarChartPlugin', 'initShortcode' ));
+
+	}
+
+	public static function initAdminFields() {
+
+
 
 	}
 
