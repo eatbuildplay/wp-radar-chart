@@ -50,14 +50,35 @@ class RadarChart {
 
 	}
 
-	public function prepareData() {
+	public function prepareDatasets() {
 
-		$data = '[';
-		foreach( $this->data as $dataPoint ) {
-			$data .= '"' . $dataPoint . '",';
+		/*
+			label: '" . $this->labels[0] . "',
+			data: " .  . ",
+			backgroundColor: '" . $this->backgroundColors[0] . "',
+		*/
+
+		$data = '';
+		foreach( $this->data as $index => $dataSet ) {
+			$data .= '{';
+
+			// data
+			$data .= 'data: [';
+			foreach( $dataSet as $dataPoint ) {
+				$data .= '"' . $dataPoint . '",';
+			}
+			$data = substr( $data, 0, -1 );
+			$data .= '],';
+
+			// label
+			$data .= 'label: "' . $this->labels[ $index ] . '",';
+
+			// backgroundColor
+			$data .= 'backgroundColor: "' . $this->backgroundColors[ $index ] . '",';
+
+			$data .= '},';
 		}
 		$data = substr( $data, 0, -1 );
-		$data .= ']';
 		return $data;
 
 	}
@@ -67,11 +88,7 @@ class RadarChart {
 		return "var data = {
 			labels: " . $this->prepareLabels() . ",
 			datasets: [
-				{
-					label: '" . $this->labels[0] . "',
-					data: " . $this->prepareData() . ",
-					backgroundColor: '" . $this->backgroundColors[0] . "',
-				},
+				" . $this->prepareDatasets() . "
 			]
 		}";
 	}

@@ -106,9 +106,9 @@ class WP_RadarChartPlugin {
 			foreach( $datasets as $dataset ) {
 
 				$radarChart->data[] = $dataset['data'];
-
 				$radarChart->labels[] = $dataset['label'];
 				$radarChart->backgroundColors[] = $dataset['background_color'];
+
 			}
 
 		}
@@ -144,9 +144,14 @@ class WP_RadarChartPlugin {
 		 * Set data
 		 */
 		if( $params['data'] ) {
-			$data = str_replace(' ', '', $params['data'] );
-			$data = explode( ',', $data );
-			$radarChart->data = $data;
+
+			$data = str_replace('(', '[', $params['data'] );
+			$data = str_replace(')', ']', $data );
+			$data = str_replace(' ', '', $data );
+			$jsonWrap = '[' . $data . ']';
+			$jsonData = json_decode( $jsonWrap );
+			$radarChart->data = $jsonData;
+
 		}
 
 		return $radarChart->render();
