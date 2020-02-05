@@ -9,6 +9,14 @@ class RadarChartCustomPostType {
 
 	}
 
+	public function fetchById( $id ) {
+		$post = get_post( $id );
+		if( !$post || $post->post_type != 'radar_chart' ) {
+			return false;
+		}
+		return $post;
+	}
+
 	public static function register() {
 
 		$labels = array(
@@ -79,12 +87,11 @@ class RadarChartCustomPostType {
 				array(
 					'name'  	 => 'Data Point Labels',
 					'id'    	 => 'datapoint_labels',
-					'type' 		 => 'text',
-					'clone' 	 => true
+					'type' 		 => 'text'
 				),
 				array(
             'name'   => 'DataSet Options',
-            'id'     => 'group_id',
+            'id'     => 'radar_chart_datasets',
             'type'   => 'group',
 						'clone'  => true,
             'fields' => array(

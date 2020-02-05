@@ -19,6 +19,8 @@ class WP_RadarChartPlugin {
 
 	public function __construct() {
 
+
+
 		// include metabox framework
 		require( WP_RADAR_CHART_PATH . 'vendor/meta-box/meta-box.php');
 		require( WP_RADAR_CHART_PATH . 'vendor/meta-box-group/meta-box-group.php');
@@ -34,11 +36,11 @@ class WP_RadarChartPlugin {
 		// register shortcode
 		add_action( 'init', array('WP_RadarChartPlugin', 'initShortcode' ));
 
-	}
 
-	public static function initAdminFields() {
-
-
+		$values = rwmb_meta( 'radar_chart_datasets', '', 175 );
+		print '<pre>';
+		var_dump( $values );
+		print '</pre>';
 
 	}
 
@@ -61,38 +63,53 @@ class WP_RadarChartPlugin {
 	// Shortcode [radar-chart]
 	public static function shortcode( $atts, $content, $tag ) {
 
+		$radarChart = new RadarChart;
+
 		// setup params from shortcode attributes
 		$params = shortcode_atts(
 			[
-				'id' => 17,
+				'id' => 0,
 				'labels' => false,
 				'background-colors' => false,
 				'data' => false
 			],
-		$atts );
+			$atts
+		);
 
-		$radarChart = new RadarChart;
+		/*
+		 * Set post ID if provided and valid
+		 */
+		if( $params['id'] ) {
+			$id = $params['id'];
+			$postType = new RadarChartCustomPostType;
+			$post = $postType->fetchById( $id );
+			if( $post ) {
+				$radarChart->id = $id;
+				$radarChart->post = $post;
+			}
+		}
 
+		/*
+		 * Set labels
+		 */
 		if( $params['labels'] ) {
 			$labels = str_replace(' ', '', $params['labels'] );
 			$labels = explode( ',', $labels );
 			$radarChart->labels = $labels;
+		} elseif( $radarChart->post ) {
+			$value = rwmb_get_value( $field_id );
 		}
 
 		if( $params['background-colors'] ) {
-
 			$backgroundColors = str_replace(' ', '', $params['background-colors'] );
 			$backgroundColors = explode( ',', $backgroundColors );
 			$radarChart->backgroundColors = $backgroundColors;
-
 		}
 
 		if( $params['data'] ) {
-
 			$data = str_replace(' ', '', $params['data'] );
 			$data = explode( ',', $data );
 			$radarChart->data = $data;
-
 		}
 
 		return $radarChart->render();
