@@ -11,12 +11,6 @@ class RadarChart {
 
 	public function __construct() {
 
-		// set default labels
-		$this->labels = array(
-			'Label 1',
-			'Label 2',
-			'Label 3'
-		);
 
 	}
 
@@ -47,7 +41,7 @@ class RadarChart {
 	public function prepareLabels() {
 
 		$labels = '[';
-		foreach( $this->labels as $label ) {
+		foreach( $this->datapointLabels as $label ) {
 			$labels .= '"' . $label . '",';
 		}
 		$labels = substr( $labels, 0, -1 );
@@ -74,7 +68,7 @@ class RadarChart {
 			labels: " . $this->prepareLabels() . ",
 			datasets: [
 				{
-					label: 'Data Set 1',
+					label: '" . $this->labels[0] . "',
 					data: " . $this->prepareData() . ",
 					backgroundColor: '" . $this->backgroundColors[0] . "',
 				},
