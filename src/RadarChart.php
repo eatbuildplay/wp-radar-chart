@@ -4,10 +4,10 @@ class RadarChart {
 
 	public $id = 0;
 	public $post = false;
-	public $dataPointLabels = []; // labels per datapoint across all datasets
+	public $datapointLabels = []; // labels per datapoint across all datasets
+	public $data = []; // array of data or datasets
 	public $labels = []; // array of labels
 	public $backgroundColors = []; // array of backgroundColors
-	public $data = []; // array of data or datasets
 
 	public function __construct() {
 

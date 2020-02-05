@@ -74,8 +74,6 @@ class RadarChartCustomPostType {
 
 	public static function fields() {
 
-		$prefix = 'prefix-';
-
 		$meta_boxes[] = array(
 			'id' => 'radar_chart_settings',
 			'title' => esc_html__( 'Radar Chart Settings', 'wp-radar-charts' ),
@@ -96,18 +94,18 @@ class RadarChartCustomPostType {
 						'clone'  => true,
             'fields' => array(
 								array(
-									'name' => 'Data',
 									'id'   => 'data',
+									'name' => 'Data',
 									'type' => 'text',
 								),
 								array(
+									'id'   => 'label',
                   'name' => 'Label',
-                  'id'   => 'label',
                   'type' => 'text',
                 ),
 								array(
-									'id' => $prefix . 'color_1',
-									'name' => esc_html__( 'Color Picker', 'wp-radar-charts' ),
+									'id' 	 => 'background_color',
+									'name' => esc_html__( 'Background Color', 'wp-radar-charts' ),
 									'type' => 'color',
 								),
             ),

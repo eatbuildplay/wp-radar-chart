@@ -19,8 +19,6 @@ class WP_RadarChartPlugin {
 
 	public function __construct() {
 
-
-
 		// include metabox framework
 		require( WP_RADAR_CHART_PATH . 'vendor/meta-box/meta-box.php');
 		require( WP_RADAR_CHART_PATH . 'vendor/meta-box-group/meta-box-group.php');
@@ -36,11 +34,14 @@ class WP_RadarChartPlugin {
 		// register shortcode
 		add_action( 'init', array('WP_RadarChartPlugin', 'initShortcode' ));
 
-
-		$values = rwmb_meta( 'radar_chart_datasets', '', 175 );
+		/*
+		$datapointLabels = rwmb_meta( 'datapoint_labels', '', 175 );
+		$datasets = rwmb_meta( 'radar_chart_datasets', '', 175 );
 		print '<pre>';
-		var_dump( $values );
+		var_dump( $datapointLabels );
+		var_dump( $datasets );
 		print '</pre>';
+		*/
 
 	}
 
@@ -87,6 +88,23 @@ class WP_RadarChartPlugin {
 				$radarChart->id = $id;
 				$radarChart->post = $post;
 			}
+		}
+
+		/*
+		 * Extract post field values if available
+		 */
+		if( $radarChart->post ) {
+
+			$datapointLabels = rwmb_meta( 'datapoint_labels', '', $radarChart->id );
+			$radarChart->datapointLabels = $datapointLabels;
+
+			$datasets = rwmb_meta( 'radar_chart_datasets', '', $radarChart->id );
+			foreach( $datasets as $dataset ) {
+				$radarChart->data[] = $dataset['data'];
+				$radarChart->labels[] = $dataset['label'];
+				$radarChart->backgroundColors[] = $dataset['background_color'];
+			}
+
 		}
 
 		/*
