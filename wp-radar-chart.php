@@ -19,12 +19,14 @@ class WP_RadarChartPlugin {
 
 	public function __construct() {
 
-		//add_action('admin_init', array('WP_RadarChartPlugin', 'initAdminFields'));
+		// include metabox framework
+		require( WP_RADAR_CHART_PATH . 'vendor/meta-box/meta-box.php');
+		require( WP_RADAR_CHART_PATH . 'vendor/meta-box-group/meta-box-group.php');
 
-		// include fields framework
-		include( WP_RADAR_CHART_PATH . 'vendor/apf/admin-page-framework.php' );
-		include( WP_RADAR_CHART_PATH . 'src/AdminFields.php' );
-		new WP_RadarChartAdminFields;
+		// init cpt
+		include( WP_RADAR_CHART_PATH . 'src/RadarChartCustomPostType.php' );
+		$cpt = new RadarChartCustomPostType;
+		$cpt->init();
 
 		// include chart.js via enqueue
 		add_action( 'wp_enqueue_scripts', array('WP_RadarChartPlugin', 'scripts'));
