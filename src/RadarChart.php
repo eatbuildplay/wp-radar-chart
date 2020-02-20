@@ -52,11 +52,9 @@ class RadarChart {
 
 	public function prepareDatasets() {
 
-		/*
-			label: '" . $this->labels[0] . "',
-			data: " .  . ",
-			backgroundColor: '" . $this->backgroundColors[0] . "',
-		*/
+		print '<pre>';
+		var_dump( $this->data );
+		print '</pre>';
 
 		$data = '';
 		foreach( $this->data as $index => $dataSet ) {

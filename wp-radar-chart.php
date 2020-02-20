@@ -103,9 +103,16 @@ class WP_RadarChartPlugin {
 			$radarChart->datapointLabels = $datapointLabels;
 
 			$datasets = rwmb_meta( 'radar_chart_datasets', '', $radarChart->id );
-			foreach( $datasets as $dataset ) {
 
-				$radarChart->data[] = $dataset['data'];
+			$radarChart->data = [];
+			foreach( $datasets as $index => $dataset ) {
+
+				$radarChart->data[ $index ] = [];
+				$data = '[' . $dataset['data'] . ']';
+				$data = str_replace(' ', '', $data );
+				$dataArray = json_decode( $data );
+				$radarChart->data[ $index ] = $dataArray;
+
 				$radarChart->labels[] = $dataset['label'];
 				$radarChart->backgroundColors[] = $dataset['background_color'];
 
