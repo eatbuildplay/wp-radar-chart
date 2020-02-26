@@ -125,7 +125,7 @@ class RadarChartCustomPostType {
 				'autosave' => 'true',
 				'fields' => array(
 					array(
-						'std'    	 => '[radar-chart id="1"]',
+						'std'    	 => '[radar-chart id="' . $post . '"]',
 						'type' 		 => 'custom_html'
 					)
 				)
