@@ -34,15 +34,6 @@ class WP_RadarChartPlugin {
 		// register shortcode
 		add_action( 'init', array('WP_RadarChartPlugin', 'initShortcode' ));
 
-		/*
-		$datapointLabels = rwmb_meta( 'datapoint_labels', '', 175 );
-		$datasets = rwmb_meta( 'radar_chart_datasets', '', 175 );
-		print '<pre>';
-		var_dump( $datapointLabels );
-		var_dump( $datasets );
-		print '</pre>';
-		*/
-
 	}
 
 	public static function scripts() {
