@@ -114,21 +114,23 @@ class RadarChartCustomPostType {
 		);
 
 		// sidebar metabox with shortcode
-		array(
-			'id' => 'radar_chart_shortcode',
-			'title' => esc_html__( 'Shortcode', 'wp-radar-charts' ),
-			'post_types' => array( 'radar_chart' ),
-			'context' => 'side',
-			'priority' => 'high',
-			'autosave' => 'true',
-			'fields' => array(
-				array(
-					'name'  	 => 'Data Point Labels',
-					'id'    	 => 'datapoint_labels',
-					'type' 		 => 'text'
+		if( isset( $_REQUEST['post'] )) {
+			$post = $_REQUEST['post'];
+			$meta_boxes[] = array(
+				'id' => 'radar_chart_shortcode',
+				'title' => esc_html__( 'Shortcode', 'wp-radar-charts' ),
+				'post_types' => array( 'radar_chart' ),
+				'context' => 'side',
+				'priority' => 'high',
+				'autosave' => 'true',
+				'fields' => array(
+					array(
+						'std'    	 => '[radar-chart id="1"]',
+						'type' 		 => 'custom_html'
+					)
 				)
-			)
-		);
+			);
+		}
 
 		return $meta_boxes;
 
