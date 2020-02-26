@@ -52,10 +52,6 @@ class RadarChart {
 
 	public function prepareDatasets() {
 
-		print '<pre>';
-		var_dump( $this->data );
-		print '</pre>';
-
 		$data = '';
 		foreach( $this->data as $index => $dataSet ) {
 			$data .= '{';
