@@ -5,5 +5,16 @@ Installation
 Usage
 
 Shortcode
+
+The shortcode [radar-chart] can be used one of 2 way. Either set an ID for a Radar Chart you created in the WP Admin, or by passing all the data required to display a radar chart.
+
+Example of using a Radar Chart post ID
 Example shortcode: [radar-chart id="1"]
 The example above works for a radar chart with post ID 1.
+
+The shortcode requires 4 attributes to define a radar chart.
+
+datapoints: title for each datapoint in the datasets
+labels: the label for each dataset 
+data: the data for each dataset
+background-colors: the background color for each dataset

@@ -69,7 +69,7 @@ class WP_RadarChartPlugin {
 		$params = shortcode_atts(
 			[
 				'id' => 0,
-				'datapoint-labels' => false,
+				'datapoints' => false,
 				'labels' => false,
 				'background-colors' => false,
 				'data' => false
@@ -96,10 +96,10 @@ class WP_RadarChartPlugin {
 		if( $radarChart->post ) {
 
 			// set datapoint labels
-			$datapointLabels = rwmb_meta( 'datapoint_labels', '', $radarChart->id );
-			$datapointLabels = str_replace(' ', '', $datapointLabels );
-			$datapointLabels = explode( ',', $datapointLabels );
-			$radarChart->datapointLabels = $datapointLabels;
+			$datapoints = rwmb_meta( 'datapoint_labels', '', $radarChart->id );
+			$datapoints = str_replace(' ', '', $datapoints );
+			$datapoints = explode( ',', $datapoints );
+			$radarChart->datapoints = $datapoints;
 
 			$datasets = rwmb_meta( 'radar_chart_datasets', '', $radarChart->id );
 
@@ -122,10 +122,10 @@ class WP_RadarChartPlugin {
 		/*
 		 * Set datapoint labels
 		 */
-		if( $params['datapoint-labels'] ) {
-			$labels = str_replace(' ', '', $params['datapoint-labels'] );
+		if( $params['datapoints'] ) {
+			$labels = str_replace(' ', '', $params['datapoints'] );
 			$labels = explode( ',', $labels );
-			$radarChart->datapointLabels = $labels;
+			$radarChart->datapoints = $labels;
 		}
 
 		/*

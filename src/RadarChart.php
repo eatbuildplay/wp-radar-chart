@@ -4,7 +4,7 @@ class RadarChart {
 
 	public $id = 0;
 	public $post = false;
-	public $datapointLabels = []; // labels per datapoint across all datasets
+	public $datapoints = []; // labels per datapoint across all datasets
 	public $data = []; // array of data or datasets
 	public $labels = []; // array of labels
 	public $backgroundColors = []; // array of backgroundColors
@@ -38,7 +38,7 @@ class RadarChart {
 	public function prepareLabels() {
 
 		$labels = '[';
-		foreach( $this->datapointLabels as $label ) {
+		foreach( $this->datapoints as $label ) {
 			$labels .= '"' . $label . '",';
 		}
 		$labels = substr( $labels, 0, -1 );
