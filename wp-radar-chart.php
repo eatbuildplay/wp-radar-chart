@@ -160,6 +160,5 @@ class WP_RadarChartPlugin {
 
 }
 
-new WP_RadarChartPlugin();
-
 require_once( WP_RADAR_CHART_PATH . '/src/RadarChart.php' );
+new WP_RadarChartPlugin();

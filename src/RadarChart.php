@@ -11,7 +11,6 @@ class RadarChart {
 
 	public function __construct() {
 
-
 	}
 
 	public function render() {
