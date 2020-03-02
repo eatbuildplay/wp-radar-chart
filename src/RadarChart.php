@@ -93,7 +93,7 @@ class RadarChart {
 	}
 
 	public function renderSetCanvasElement() {
-		return 'var ctx = document.getElementById("radarChart").getContext("2d");';
+		return 'var ctx = document.getElementById("radar-chart-' . $this->id . '").getContext("2d");';
 	}
 
 	public function renderOptions() {
@@ -109,7 +109,11 @@ class RadarChart {
 	}
 
 	public function renderCanvas() {
-		return '<canvas id="radarChart"></canvas>';
+		$content = '';
+		$content .= '<div id="radar-chart-wrap-' . $this->id . '" class="radar-chart-wrap">';
+		$content .= '<canvas id="radar-chart-' . $this->id . '" class="radar-chart"></canvas>';
+		$content .= '</div>';
+		return $content;
 	}
 
 	public function setLabels( $labels ) {

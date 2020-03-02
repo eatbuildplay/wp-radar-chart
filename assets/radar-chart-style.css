@@ -1,5 +1,10 @@
-#radarChart {
+.radar-chart-wrap {
   width: 100%;
-  min-width: 600px;
-  min-height: 300px;
+  min-width: 320px;
+  min-height: 280px;
+}
+.radar-chart {
+  width: 100%;
+  min-width: 320px;
+  min-height: 280px;
 }
