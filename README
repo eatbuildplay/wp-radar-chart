@@ -1,0 +1,9 @@
+WP Radar Charts
+
+Installation
+
+Usage
+
+Shortcode
+Example shortcode: [radar-chart id="1"]
+The example above works for a radar chart with post ID 1.

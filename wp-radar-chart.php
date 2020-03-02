@@ -13,7 +13,8 @@
  *
  */
 
- define('WP_RADAR_CHART_PATH', plugin_dir_path( __FILE__ ));
+define('WP_RADAR_CHART_PATH', plugin_dir_path( __FILE__ ));
+define('WP_RADAR_CHART_URL', plugin_dir_url( __FILE__ ));
 
 class WP_RadarChartPlugin {
 
@@ -41,6 +42,13 @@ class WP_RadarChartPlugin {
 		wp_enqueue_script(
 			'chart-js',
 			'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js',
+			array(),
+			true
+		);
+
+    wp_enqueue_style(
+			'radar-chart-style',
+			WP_RADAR_CHART_URL . 'assets/radar-chart-style.css',
 			array(),
 			true
 		);

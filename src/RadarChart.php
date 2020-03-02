@@ -30,8 +30,6 @@ class RadarChart {
 		$output .= $this->renderChartSetup();
 		$output .= "\r";
 		$output .= $this->renderCloseScript();
-		$output .= "\r";
-		$output .= $this->renderStyles();
 
 		return $output;
 
@@ -84,18 +82,6 @@ class RadarChart {
 				" . $this->prepareDatasets() . "
 			]
 		}";
-	}
-
-	public function renderStyles() {
-		return "
-			<style>
-				#radarChart {
-					width: 100%;
-					min-width: 600px;
-					min-height: 300px;
-				}
-			</style>
-		";
 	}
 
 	public function renderChartSetup() {
