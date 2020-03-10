@@ -115,7 +115,13 @@ class RadarChartCustomPostType {
 
 		// sidebar metabox with shortcode
 		if( isset( $_REQUEST['post'] )) {
-			$post = $_REQUEST['post'];
+
+			// sanitize the URL post and if it's not a number
+			$post = sanitize_text_field( $_REQUEST['post'] );
+			if( !is_numeric( $post )) {
+				wp_die('WP Radar Charts: Sorry the post ID in the URL seems to be invalid.');
+			}
+
 			$meta_boxes[] = array(
 				'id' => 'radar_chart_shortcode',
 				'title' => esc_html__( 'Shortcode', 'wp-radar-charts' ),

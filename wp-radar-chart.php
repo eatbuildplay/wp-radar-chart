@@ -4,7 +4,7 @@
  * Plugin Name:			WP Radar Chart
  * Plugin URI:			http://eatbuildplay.com/plugins/wp-radar-chart/
  * Description:			Create radar charts using chart.js.
- * Version:					1.3.1
+ * Version:					1.4.0
  * Author:					Casey Milne, Eat/Build/Play
  * Author URI:			http://eatbuildplay.com
  *
@@ -41,7 +41,7 @@ class WP_RadarChartPlugin {
 
 		wp_enqueue_script(
 			'chart-js',
-			'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js',
+			WP_RADAR_CHART_URL . 'assets/chartjs.bundle.js',
 			array(),
 			true
 		);
